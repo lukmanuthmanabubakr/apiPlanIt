@@ -1,45 +1,126 @@
+// require("dotenv").config();
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const cors = require("cors");
+// const bodyParser = require("body-parser");
+// const cookieParser = require("cookie-parser");
+// const userRoute = require('./routes/userRoute')
+// const taskRoute = require("./routes/taskRoute");
+// const errorHandler = require('./middleware/errorMiddleware')
+
+// const app = express();
+
+// //Middlewares
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+// app.use(bodyParser.json());
+
+
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "https://planitfy.vercel.app"],
+//     credentials: true,
+//   })
+// );
+
+// // Routes
+// app.use("/api/users", userRoute);
+// app.use("/api/tasks", taskRoute);
+
+
+// app.get("/", (req, res) => {
+//   res.send("Home Page");
+// });
+
+// //Error Handler
+// app.use(errorHandler)
+
+// const PORT = process.env.PORT || 7000;
+
+// mongoose.connect(process.env.MONGO_DB_URL).then(() => {
+//   app.listen(PORT, () => {
+//     console.log(`Server running on ${PORT}`);
+//   })
+// }).catch((err) => console.error(err));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const userRoute = require('./routes/userRoute')
+const userRoute = require("./routes/userRoute");
 const taskRoute = require("./routes/taskRoute");
-const errorHandler = require('./middleware/errorMiddleware')
+const errorHandler = require("./middleware/errorMiddleware");
 
 const app = express();
 
-//Middlewares
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-
+// Improved CORS Configuration
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://planitfy.vercel.app"],
-    credentials: true,
+    origin: ["http://localhost:3000", "https://planitfy.vercel.app"], // Frontend URLs
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    credentials: true, // Allows cookies
+    allowedHeaders: ["Content-Type", "Authorization"], // Explicit allowed headers
   })
 );
+
+// Security Headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,DELETE,OPTIONS"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type,Authorization"
+  );
+  next();
+});
 
 // Routes
 app.use("/api/users", userRoute);
 app.use("/api/tasks", taskRoute);
 
-
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-//Error Handler
-app.use(errorHandler)
+// Error Handler Middleware
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 7000;
 
-mongoose.connect(process.env.MONGO_DB_URL).then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
+// Database Connection and Server Start
+mongoose
+  .connect(process.env.MONGO_DB_URL)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on ${PORT}`);
+    });
   })
-}).catch((err) => console.error(err));
+  .catch((err) => console.error(err));
