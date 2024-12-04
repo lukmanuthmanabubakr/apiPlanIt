@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://TrackItNow.vercel.app"],
+    origin: ["http://localhost:3000", "https://planitfy.vercel.app"],
     credentials: true,
   })
 );
