@@ -81,7 +81,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://planitfy.vercel.app"], // Frontend URLs
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allowed methods
     credentials: true, // Allows cookies
     allowedHeaders: ["Content-Type", "Authorization"], // Explicit allowed headers
   })
@@ -93,7 +93,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST,PUT,DELETE,OPTIONS"
+    "GET,POST,PUT,DELETE,OPTIONS","PATCH"
   );
   res.setHeader(
     "Access-Control-Allow-Headers",
