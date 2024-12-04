@@ -12,7 +12,7 @@ const sendEmail = async (
   link
 ) => {
   const hbs = (await import("nodemailer-express-handlebars")).default;
-  // Create Email Transporter
+  // Create Email Transporters
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: 465,
