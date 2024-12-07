@@ -368,10 +368,10 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
   const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
 
   // Send Email
-  const subject = "Verify Your Account - TrackItNow";
+  const subject = "Verify Your Account - PlanIt";
   const send_to = user.email;
   const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@trackitnow.com";
+  const reply_to = "noreply@PlanIt.com";
   const template = "verifyEmail";
   const name = user.name;
   const link = verificationUrl;
@@ -458,10 +458,10 @@ const forgotPassword = asyncHandler(async (req, res) => {
   const resetUrl = `${process.env.FRONTEND_URL}/resetPassword/${resetToken}`;
 
   // Send Email
-  const subject = "Password Reset Request - TrackItNow";
+  const subject = "Password Reset Request - PlanIt";
   const send_to = user.email;
   const sent_from = process.env.EMAIL_USER;
-  const reply_to = "noreply@trackitnow.com";
+  const reply_to = "noreply@PlanIt.com";
   const template = "forgotPassword";
   const name = user.name;
   const link = resetUrl;
@@ -569,7 +569,7 @@ const sendLoginCode = asyncHandler(async (req, res) => {
   const decryptedLoginCode = cryptr.decrypt(loginCode);
 
   // Send Login Code
-  const subject = "Login Access Code - TrackItNow";
+  const subject = "Login Access Code - PlanIt";
   const send_to = email;
   const sent_from = process.env.EMAIL_USER;
   const reply_to = "noreply@zino.com";
