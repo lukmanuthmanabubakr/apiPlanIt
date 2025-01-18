@@ -16,7 +16,7 @@ const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  // Validation
+  // Vali aspect
   if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please fill in all the required fields.");
