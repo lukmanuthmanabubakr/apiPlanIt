@@ -16,7 +16,7 @@ const createTask = async (req, res) => {
     const inputDate = new Date(dueDate);
     const currentDate = new Date();
 
-    // Remove time portion for accurate comparison
+    // Remove time 
     currentDate.setHours(0, 0, 0, 0);
     inputDate.setHours(0, 0, 0, 0);
 
