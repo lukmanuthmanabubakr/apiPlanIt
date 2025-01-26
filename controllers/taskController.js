@@ -7,7 +7,7 @@ const createTask = async (req, res) => {
   try {
     const { title, description, dueDate } = req.body;
 
-    // Check if all fields are provided
+    // Chec fields are provided
     if (!title || !description || !dueDate) {
       return res.status(400).json({ message: "All fields are required" });
     }
