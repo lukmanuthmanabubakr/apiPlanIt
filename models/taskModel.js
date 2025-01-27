@@ -54,7 +54,7 @@ const taskSchema = mongoose.Schema(
       },
     ],
     tags: [String],
-    attachments: [String], // Array of file URLs
+    attachments: [String], //  of file URLs
     isRecurring: {
       type: Boolean,
       default: false,
