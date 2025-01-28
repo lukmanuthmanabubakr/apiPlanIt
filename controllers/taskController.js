@@ -12,7 +12,7 @@ const createTask = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    //  dueDate to a Date object and get the current date
+    //  dueDate to a Date object and get the current
     const inputDate = new Date(dueDate);
     const currentDate = new Date();
 
